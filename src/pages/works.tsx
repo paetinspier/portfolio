@@ -1,11 +1,11 @@
-import Header, { weekday, month } from "@/components/Header";
+import Header from "@/components/Header";
 import HomeBar from "@/components/HomeBar";
 import { firestore } from "@/config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { BsChevronRight, BsGit, BsGithub, BsPersonPlus } from "react-icons/bs";
-import { RiSendPlaneFill } from "react-icons/ri";
+import React from "react";
+import { BsChevronRight, BsGithub } from "react-icons/bs";
+
 
 interface Project {
 	title: string;
@@ -15,7 +15,7 @@ interface Project {
 	technologies: string;
 }
 
-async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: any) {
 	const querySnapshot = await getDocs(collection(firestore, "project"));
 	const projects = querySnapshot.docs.map<any>((doc) => doc.data());
 
