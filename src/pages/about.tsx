@@ -21,23 +21,6 @@ export async function getServerSideProps(context: any) {
 }
 
 const About = (props: AboutProps) => {
-	const [date, setDate] = useState(new Date());
-	const [d, setDay] = useState<string>(weekday[date.getDay()]);
-	const [m, setMonth] = useState<string>(month[date.getMonth()]);
-	const [calDay, setCalDay] = useState<string>(
-		date.getDate().toLocaleString()
-	);
-
-	function refreshClock() {
-		setDate(new Date());
-	}
-	useEffect(() => {
-		const timerId = setInterval(refreshClock, 1000);
-
-		return function cleanup() {
-			clearInterval(timerId);
-		};
-	}, []);
 	return (
 		<>
 			<div className="isolate">
