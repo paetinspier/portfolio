@@ -1,9 +1,9 @@
-import Header, { month, weekday } from "@/components/Header";
+import Header from "@/components/Header";
 import HomeBar from "@/components/HomeBar";
 import { firestore } from "@/config/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BsPersonPlus } from "react-icons/bs";
 import { RiSendPlaneFill } from "react-icons/ri";
 
