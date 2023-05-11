@@ -12,7 +12,7 @@ interface AboutProps {
 	content: string;
 }
 
-export async function getServerSideProps(context: any) {
+async function getServerSideProps(context: any) {
 	const docRef = doc(firestore, "about", "about");
 	const contact = await getDoc(docRef);
 

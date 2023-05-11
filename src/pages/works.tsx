@@ -1,28 +1,27 @@
-import Header, { weekday, month } from '@/components/Header';
-import HomeBar from '@/components/HomeBar';
-import { firestore } from '@/config/firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react'
-import { BsChevronRight, BsGit, BsGithub, BsPersonPlus } from 'react-icons/bs';
-import { RiSendPlaneFill } from 'react-icons/ri';
+import Header, { weekday, month } from "@/components/Header";
+import HomeBar from "@/components/HomeBar";
+import { firestore } from "@/config/firebase";
+import { collection, getDocs } from "firebase/firestore";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { BsChevronRight, BsGit, BsGithub, BsPersonPlus } from "react-icons/bs";
+import { RiSendPlaneFill } from "react-icons/ri";
 
 interface Project {
-    title: string;
-    description: string;
-    githubUrl: string;
-    imgUrl: string;
-    technologies: string;
+	title: string;
+	description: string;
+	githubUrl: string;
+	imgUrl: string;
+	technologies: string;
 }
 
-export async function getServerSideProps(context: any) {
-    
-    const querySnapshot = await getDocs(collection(firestore, 'project'));
-    const projects = querySnapshot.docs.map<any>((doc) => doc.data())
-  
-    // Pass data to the page via props
-    return { props: {projects} }
-  }
+async function getServerSideProps(context: any) {
+	const querySnapshot = await getDocs(collection(firestore, "project"));
+	const projects = querySnapshot.docs.map<any>((doc) => doc.data());
+
+	// Pass data to the page via props
+	return { props: { projects } };
+}
 
 const works = (projects: any) => {
 	return (
@@ -78,7 +77,7 @@ const works = (projects: any) => {
 				</div>
 				{/* About */}
 				<div className="w-full min-h-screen flex flex-col justify-center items-center px-3">
-					<Header page={"About"}/>
+					<Header page={"About"} />
 					<div className="w-full max-w-[1000px] mt-[-50px] h-1/2 rounded-lg overflow-hidden shadow-xl shadow-neutral-400">
 						<div className="w-full h-[20px] p-3 flex flex-row justify-start items-center gap-1 bg-neutral-800">
 							<div className="w-[10px] h-[10px] rounded-full bg-red-600" />
@@ -86,30 +85,52 @@ const works = (projects: any) => {
 							<div className="w-[10px] h-[10px] rounded-full bg-green-600" />
 						</div>
 						<div className="w-full bg-neutral-200 max-h-[70vh] overflow-y-scroll p-6">
-							<div className='w-full flex flex-col justify-center items-center gap-4'>
-                                {projects.projects.map((project: Project) => {
-
-                                    return(
-                                        <div key={project.title} className='w-full flex md:flex-row flex-col justify-center items-center bg-neutral-500 gap-3 bg-opacity-50 p-3 rounded-lg'>
-                                            <div className='md:w-1/4 w-full h-full max-h-[200px] rounded-lg overflow-hidden'>
-                                                <img src={project.imgUrl} alt="img" />
-                                            </div>
-                                            <div className='md:w-3/4 w-full flex flex-col justify-center items-start gap-1'>
-                                                <div className='text-white text-lg text-left w-full flex flex-row justify-start items-center gap-4'>{project.title} {project.githubUrl ? <Link href={project.githubUrl} className='flex flex-row justify-start items-center gap-1 hover:gap-4 text-lg hover:text-blue-600 duration-300'><BsGithub/><BsChevronRight/></Link> : null}</div>
-                                                <div className='text-white text-sm text-left w-full'>{project.technologies}</div>
-                                                <div className='text-white text-left w-full'>{project.description}</div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+							<div className="w-full flex flex-col justify-center items-center gap-4">
+								{projects.projects.map((project: Project) => {
+									return (
+										<div
+											key={project.title}
+											className="w-full flex md:flex-row flex-col justify-center items-center bg-neutral-500 gap-3 bg-opacity-50 p-3 rounded-lg"
+										>
+											<div className="md:w-1/4 w-full h-full max-h-[200px] rounded-lg overflow-hidden">
+												<img
+													src={project.imgUrl}
+													alt="img"
+												/>
+											</div>
+											<div className="md:w-3/4 w-full flex flex-col justify-center items-start gap-1">
+												<div className="text-white text-lg text-left w-full flex flex-row justify-start items-center gap-4">
+													{project.title}{" "}
+													{project.githubUrl ? (
+														<Link
+															href={
+																project.githubUrl
+															}
+															className="flex flex-row justify-start items-center gap-1 hover:gap-4 text-lg hover:text-blue-600 duration-300"
+														>
+															<BsGithub />
+															<BsChevronRight />
+														</Link>
+													) : null}
+												</div>
+												<div className="text-white text-sm text-left w-full">
+													{project.technologies}
+												</div>
+												<div className="text-white text-left w-full">
+													{project.description}
+												</div>
+											</div>
+										</div>
+									);
+								})}
+							</div>
 						</div>
 					</div>
 					<HomeBar />
 				</div>
 			</div>
 		</>
-  )
-}
+	);
+};
 
-export default works
+export default works;
