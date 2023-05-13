@@ -108,7 +108,7 @@ export default function Home() {
 						<div className="w-full bg-neutral-800 bg-opacity-50 h-80 p-6">
 							<div className="w-full flex flex-col justify-start items-center">
 								<div className="text-white text-left w-full cursor-default">
-									~ % Hi, i'm Paetin 👋
+									~ % Hi, i&apos;m Paetin 👋
 								</div>
 								<div className="text-white text-left w-full cursor-default">
 									~ % A Full-Stack Engineer passionate about
