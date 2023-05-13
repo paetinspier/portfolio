@@ -12,7 +12,7 @@ const firebaseCredentials = {
 	storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
 };
 
-console.log(firebaseCredentials);
+
 const app = initializeApp(firebaseCredentials);
 export const auth = getAuth();
 export const firestore = getFirestore(app);
