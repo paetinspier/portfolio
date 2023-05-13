@@ -6,12 +6,17 @@ import { BsDownload, BsGithub, BsLinkedin } from "react-icons/bs";
 import Header, { month, weekday } from "@/components/Header";
 import HomeBar from "@/components/HomeBar";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, getDocFromCache, getDocs } from "firebase/firestore";
+import {
+	collection,
+	doc,
+	getDoc,
+	getDocFromCache,
+	getDocs,
+} from "firebase/firestore";
 import { firestore } from "@/config/firebase";
 import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
-
 
 export default function Home() {
 	const router = useRouter();
@@ -32,13 +37,13 @@ export default function Home() {
 		};
 	}, []);
 	const getResume = async () => {
-		const docRef = doc(firestore, 'resume', 'lpgUHbUDLx29bzKqjaJN');
+		const docRef = doc(firestore, "resume", "lpgUHbUDLx29bzKqjaJN");
 		const docSnap = await getDoc(docRef);
-		const data = docSnap.data()
-		if(data){
-			router.push(data?.link)
+		const data = docSnap.data();
+		if (data) {
+			router.push(data?.link);
 		}
-	}
+	};
 	return (
 		<>
 			<div className="isolate">
@@ -103,7 +108,7 @@ export default function Home() {
 						<div className="w-full bg-neutral-800 bg-opacity-50 h-80 p-6">
 							<div className="w-full flex flex-col justify-start items-center">
 								<div className="text-white text-left w-full cursor-default">
-									~ % Hi, i&quot;m Paetin 👋
+									~ % Hi, i'm Paetin 👋
 								</div>
 								<div className="text-white text-left w-full cursor-default">
 									~ % A Full-Stack Engineer passionate about
@@ -112,24 +117,45 @@ export default function Home() {
 								<p className="text-white text-left w-full flex flex-row justify-start items-center gap-1 flex-wrap">
 									~ %{" "}
 									<button
-										className="text-emerald-400 flex flex-row justify-center items-center gap-1 flex-wrap"
+										className="text-emerald-400 flex flex-col justify-center items-center gap-1 flex-wrap relative group"
 										onClick={getResume}
 									>
-										You can find my resumé here{" "}
-										<BsDownload />
+										<div className="flex flex-row justify-center items-center gap-2">
+											You can find my resumé here{" "}
+											<BsDownload />
+										</div>
+										<span className="absolute -bottom-0 left-1/2 w-0 h-[.1rem] bg-emerald-400 group-hover:w-1/2 group-hover:transition-all duration-300 rounded-full"></span>
+										<span className="absolute -bottom-0 right-1/2 w-0 h-[.1rem] bg-emerald-400 group-hover:w-1/2 group-hover:transition-all duration-300 rounded-full"></span>
 									</button>
 								</p>
 								<p className="text-white text-left w-full flex flex-row justify-start items-center gap-1 flex-wrap">
 									~ %{" "}
-									<Link className="text-emerald-400 flex flex-row justify-center items-center gap-1 flex-wrap" href={"https://github.com/paetinspier"}>
-										You can find my GitHub here <BsGithub />
+									<Link
+										className="text-emerald-400 flex flex-col justify-center items-center gap-1 flex-wrap relative group"
+										href={"https://github.com/paetinspier"}
+									>
+										<div className="flex flex-row justify-center items-center gap-2">
+											You can find my GitHub here{" "}
+											<BsGithub />
+										</div>
+										<span className="absolute -bottom-0 left-1/2 w-0 h-[.1rem] bg-emerald-400 group-hover:w-1/2 group-hover:transition-all duration-300 rounded-full"></span>
+										<span className="absolute -bottom-0 right-1/2 w-0 h-[.1rem] bg-emerald-400 group-hover:w-1/2 group-hover:transition-all duration-300 rounded-full"></span>
 									</Link>
 								</p>
 								<p className="text-white text-left w-full flex flex-row justify-start items-center gap-1 flex-wrap">
 									~ %{" "}
-									<Link className="text-emerald-400 flex flex-row justify-center items-center gap-1 flex-wrap" href={"https://www.linkedin.com/in/paetin-nelson/"}>
-										You can find my LinkedIn here{" "}
-										<BsLinkedin />
+									<Link
+										className="text-emerald-400 flex flex-col justify-center items-center gap-1 flex-wrap relative group"
+										href={
+											"https://www.linkedin.com/in/paetin-nelson/"
+										}
+									>
+										<div className="flex flex-row justify-center items-center gap-2">
+											You can find my LinkedIn here{" "}
+											<BsLinkedin />
+										</div>
+										<span className="absolute -bottom-0 left-1/2 w-0 h-[.1rem] bg-emerald-400 group-hover:w-1/2 group-hover:transition-all duration-300 rounded-full"></span>
+										<span className="absolute -bottom-0 right-1/2 w-0 h-[.1rem] bg-emerald-400 group-hover:w-1/2 group-hover:transition-all duration-300 rounded-full"></span>
 									</Link>
 								</p>
 							</div>
